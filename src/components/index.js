@@ -1,2 +1,2 @@
-export { default as Popup } from './pop-up';
+export { default as Modal } from './modal';
 export { default as ToolTip } from './tooltip';

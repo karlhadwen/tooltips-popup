@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { ToolTip, Popup } from './components';
+import { ToolTip, Modal } from './components';
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -9,19 +9,37 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "Open Sans", sans-serif;
+  }
+  button {
+    margin-bottom: 50px;
   }
 `;
 
 export default function App() {
+  const [toggleModal, setToggleModal] = useState(false);
+
   return (
     <>
       <GlobalStyle />
-      <ToolTip>
-        <p>Hello tooltip</p>
+      <ToolTip label="Ordering in GBP">
+        <button type="button">Hover me</button>
       </ToolTip>
-      <Popup>
-        <p>Hello popup</p>
-      </Popup>
+
+      <button type="button" onClick={() => setToggleModal(!toggleModal)}>
+        Toggle Modal
+      </button>
+
+      <Modal toggle={toggleModal} setToggle={setToggleModal}>
+        <Modal.Header>👋 Hello, I am a Header</Modal.Header>
+        <Modal.Body>
+          Suspendisse potenti. Vivamus ipsum erat, consequat ut dui eget,
+          vulputate fermentum ex. Donec luctus libero lacus, nec facilisis odio
+          convallis eu. Nunc interdum at ex in ultrices. Suspendisse et ultrices
+          ipsum. Integer vitae tristique turpis, congue interdum eros. Aliquam
+          dignissim posuere velit eu fermentum.
+        </Modal.Body>
+      </Modal>
     </>
   );
 }
